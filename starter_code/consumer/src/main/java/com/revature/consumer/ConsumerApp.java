@@ -14,14 +14,14 @@ import java.util.Map;
 @RequestMapping("/api/messages")
 public class ConsumerApp {
 
-    private final List<String> receivedMessages = new ArrayList<>();
+    final List<String> receivedMessages = new ArrayList<>();
 
     public static void main(String[] args) {
         SpringApplication.run(ConsumerApp.class, args);
     }
 
     // TODO: Add @KafkaListener annotation
-    // @KafkaListener(topics = "messages", groupId = "message-consumers")
+    @KafkaListener(topics = "messages", groupId = "message-consumers")
     public void listen(String message) {
         System.out.println("Received message: " + message);
         receivedMessages.add(message);
